@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% from "_formhelpers.html" import render_field %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+<!-- Page Content -->
+<div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h1 class="mt-5">Bookit – A Hotel Pricing Tool</h1>
+        <p class="lead">Find the best time to book your hotel stay!</p>
+        <p class="lead">Just pick a destination, check-in date and preferred hotel star rating.
+            Bookit will predict the average prices as it gets closer to your check-in date
+            and let you quickly see how prices are predicted to change if you wait with booking.
+        </p>
+      </div>
+    </div>
+  </div>
+
+<div class="container">
+    <form action="" method="post" class="form" role="form">
+        <div class="row justify-content-md-center">
+            <div class="col col-lg-2">
+                Where to?
+                {{ wtf.form_field(form.search, class='form-control', 
+                placeholder='City') }}
+            </div>
+            <div class="col col-lg-3">
+                Check-in
+                {{ wtf.form_field(form.checkin_date, class='form-control') }}
+            </div>
+            <div class="col col-lg-2">
+                <br><br>
+                <button type="submit" value="Search" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="btn-group mr-2" role="group" aria-label="First group">
+                Star rating   {{ wtf.form_field(form.star_rating, class='form-control') }}
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col col-lg-9">
+            <div id="plot-content">
+                {{ script|safe }}
+                {{ div|safe }}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
